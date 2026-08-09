@@ -1,0 +1,45 @@
+# ===== 私密信息（绝不提交） =====
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*secret*
+*credential*
+
+# ===== 开发软件配置（不上传） =====
+.idea/
+.vscode/
+*.suo
+*.user
+venv/
+.venv/
+env/
+
+# ===== 构建与运行缓存 =====
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ===== 内部开发文档（不纳入版本控制） =====
+docs/
+
+# ===== 转录输出（不入库，输出目录由 --out-dir 指定） =====
+output/
+transcripts/
+
+# ===== 系统与临时文件 =====
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+~$*
