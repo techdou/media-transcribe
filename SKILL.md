@@ -1,6 +1,6 @@
 ---
 name: media-transcribe
-description: 通用本地音视频转录与时间戳工作流。把本地音视频文件（口播课、录屏、访谈、会议、播客、讲座、公开课）批量转成高精度文字 + 字级时间戳（SRT/JSON）+ 带时间戳的逐句转录稿，纯本地离线，支持 30+ 语种。当任务需要本地/批量/离线/高精度转录、字幕生成、口播稿整理、按时间戳定位剪辑点时使用。ChatCut 项目内的字幕请用 chatcut:transcription；已有转录只做口播去口误用 koubo-clean；口误识别审查稿用 AI剪口播。触发词：转录、转写、ASR、字幕、时间戳、音视频转文字、本地转写、会议记录、访谈转写、播客转写、口播稿、Qwen3-ASR。
+description: 通用本地音视频转录与时间戳工作流。把本地音视频文件（口播课、录屏、访谈、会议、播客、讲座、公开课）批量转成高精度文字 + 字级时间戳（SRT/JSON）+ 带时间戳的逐句转录稿，纯本地离线，支持 30+ 语种。当任务需要本地/批量/离线/高精度转录、字幕生成、口播稿整理、按时间戳定位剪辑点时使用。ChatCut 项目内的字幕请用 chatcut:transcription。触发词：转录、转写、ASR、字幕、时间戳、音视频转文字、本地转写、会议记录、访谈转写、播客转写、口播稿、Qwen3-ASR。
 ---
 
 # 本地音视频转录（media-transcribe）
@@ -17,9 +17,6 @@ description: 通用本地音视频转录与时间戳工作流。把本地音视�
 
 **不用（交给相邻 skill）**：
 - ChatCut 项目内加字幕/开字幕/双语字幕 → `chatcut:transcription`
-- 已有转录，只要清理口误/叠字/重复 → `koubo-clean`
-- 只要口误识别与删除任务清单 → `AI剪口播`
-- 课程成片全流程（转录是其中一步） → `dou-ai-course-video`（内部如需本地预转录再回到本 skill）
 
 ## 快速开始
 
@@ -61,8 +58,6 @@ python scripts\oral_pipeline.py --search "关键词" --out-dir .\transcripts
 
 ## 下游处理（按需）
 
-- 口播清理：按 `koubo-clean` 规范审校
-- 课程成片：`dou-ai-course-video` 模板
 - 字幕进 ChatCut：`edit_captions`
 - 纪要整理：直接基于 `_timed.md` 的逐句稿
 
@@ -75,7 +70,7 @@ python scripts\oral_pipeline.py --search "关键词" --out-dir .\transcripts
 | 转录结果 0 字 | 先 `--doctor`；音频是否为空；确认未传错误 `--duration`（内部固定 None） |
 | provider 初始化失败 | `--provider CPU --no-gpu` 兜底，或确认 `onnxruntime-directml` |
 | 长音频出现重复循环 | `--temperature 0.5` 或增大 `--memory-num` |
-| 专有名词听错 | 属 ASR 常态（MCP→MZP、WorkBuddy→Work Buddy 等），按项目术语表统一（口播课见 `koubo-clean` 品牌词表） |
+| 专有名词听错 | 属 ASR 常态（MCP→MZP、WorkBuddy→Work Buddy 等），按项目术语表统一 |
 
 ## 运行环境（环境变量配置，仓库不含本机路径）
 
