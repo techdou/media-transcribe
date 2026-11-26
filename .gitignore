@@ -1,6 +1,7 @@
 # ===== 私密信息（绝不提交） =====
 .env
 .env.*
+*.env
 !.env.example
 *.key
 *.pem
@@ -8,6 +9,8 @@
 *.pfx
 *secret*
 *credential*
+*token*.json
+*cookies*.json
 
 # ===== 开发软件配置（不上传） =====
 .idea/
@@ -60,6 +63,7 @@ _htpasswd
 .cursor/
 .gemini/
 .zcode/
+.pi/
 .windsurf/
 .trae/
 .roo/
@@ -102,3 +106,8 @@ desktop.ini
 *-private.md
 NOTES.md
 PLAN*.md
+devlog/
+*.bak
+*.bak-*
+archive/
+state/

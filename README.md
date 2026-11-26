@@ -22,6 +22,8 @@
 ```powershell
 # 0) 环境自检（Agent 调用前必跑；全 PASS 才继续）
 python scripts\oral_pipeline.py --doctor
+# 纯 CPU 环境：自检与正式转录都加上 --provider CPU
+python scripts\oral_pipeline.py --doctor --provider CPU
 
 # 1) 转录：单文件 / 多文件 / 目录
 python scripts\oral_pipeline.py a.mp4 b.mp3
@@ -46,9 +48,10 @@ python scripts\oral_pipeline.py --search "关键词" --out-dir .\transcripts
 | --- | --- | --- |
 | `--lang` | Chinese | 语种，支持 30+ |
 | `--provider` | DML | ONNX 编码器后端：DML / CUDA / CPU / TRT |
+| `--device` | auto | GGUF 解码设备：cpu / gpu；auto 随 CPU provider 用 CPU，其余用 GPU |
 | `--no-ts` | 关 | 关闭时间戳对齐（只要文本时提速） |
 | `--chunk-size` | 40 | 分片秒数 |
-| `--out-dir` | 输入同目录 | 输出目录，建议显式指定避免覆盖 |
+| `--out-dir` | 输入同目录 | 相对路径以启动目录为基准；显式指定时拒绝覆盖已有产物。批次内同输出目录的同名 stem 会报错，请改名或分开运行 |
 | `--search` | - | 在逐句稿中定位短语并输出时间戳 |
 | `--doctor` | - | 环境自检，不转录 |
 
